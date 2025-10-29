@@ -27,3 +27,11 @@ class Ingredient(models.Model):
 
     def unit_consistency(self):
         pass
+
+class Step(models.Model):
+    step_no = models.IntegerField()
+    step_description = models.CharField()
+    step_ingredient = user = models.OneToOneField(
+        Ingredient,
+        on_delete=models.CASCADE,
+    )

@@ -35,3 +35,26 @@ class Step(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
     )
+
+
+class Recipe(models.Model):
+
+    COOKING_METHOD_CHOICES = [
+    ("bake","Bake"),
+    ("boil","Boil"),
+    ("steam","Steam")
+    ("roast","Roast."),
+    ("braise","Braise"),
+    ("fry","Fry"),
+    ("airfry","Air Fry"),
+    ("stirfry","Stir Fry"),
+    ]
+    name = models.CharField()
+    style = models.CharField()
+    flaver_profile = models.ArrayField()
+    cooking_method = models.CharField(hcoices=COOKING_METHOD_CHOICES)   
+    ingredients = models.ManyToManyField(Ingredient)
+    steps = models.ManyToManyField(Step)
+
+    
+    

@@ -1,16 +1,21 @@
+from typing import Any
+
 from django.db import models
 
 # Create your models here.
 
 
 class Ingredient(models.Model):
-    name = models.CharField()
-    english_quantity = models.DecimalField()
-    metric_quantity = models.IntegerField()
+    name: models.CharField[str, str] = models.CharField(max_length=200)
+    english_quantity: models.DecimalField[Any, Any] = models.DecimalField(
+        max_digits=10, decimal_places=2
+    )
+    metric_quantity: models.IntegerField[int, int] = models.IntegerField()
     ENGLISH_UNIT_CHOICES = [
         ("tsp", "teaspoon"),
         ("tablespoon", "tbsp"),
-        ("cup", "cup")("gallon", "gal."),
+        ("cup", "cup"),
+        ("gallon", "gal."),
         ("ounce", "oz"),
         ("fluid ounce", "fl oz"),
         ("pound", "lb"),
@@ -22,9 +27,11 @@ class Ingredient(models.Model):
         ("liter", "L"),
     ]
     UNIT_CHOICES = ENGLISH_UNIT_CHOICES + METRIC_UNIT_CHOICES
-    unit_type = models.CharField(choices=UNIT_CHOICES)
+    unit_type: models.CharField[str, str] = models.CharField(
+        max_length=50, choices=UNIT_CHOICES
+    )
 
-    def unit_consistency(self):
+    def unit_consistency(self) -> None:
         pass
 
 
@@ -43,20 +50,26 @@ class Step(models.Model):
     COOKING_METHOD_CHOICES = [
         ("bake", "Bake"),
         ("boil", "Boil"),
-        ("steam", "Steam")("roast", "Roast."),
+        ("steam", "Steam"),
+        ("roast", "Roast."),
         ("braise", "Braise"),
         ("fry", "Fry"),
         ("airfry", "Air Fry"),
         ("stirfry", "Stir Fry"),
     ]
-    step_number = models.IntegerField()
-    description = models.CharField()
-    step_ingredient = models.ArrayField(
-        Ingredient,
-        on_delete=models.CASCADE,
+    step_number: models.IntegerField[int, int] = models.IntegerField()
+    description: models.CharField[str, str] = models.CharField(max_length=1000)
+    step_ingredient: models.ManyToManyField[Ingredient, Ingredient] = (
+        models.ManyToManyField(
+            Ingredient,
+        )
     )
-    cooking_method = models.CharField(hcoices=COOKING_METHOD_CHOICES)
-    step_action = models.ArrayField(choices=ACTION_CHOICES)
+    cooking_method: models.CharField[str, str] = models.CharField(
+        max_length=50, choices=COOKING_METHOD_CHOICES
+    )
+    step_action: models.CharField[str, str] = models.CharField(
+        max_length=50, choices=ACTION_CHOICES
+    )
 
 
 class Recipe(models.Model):
@@ -83,10 +96,13 @@ class Recipe(models.Model):
         ("weird", "Weird"),
     ]
 
-    name = models.CharField()
-    style = models.CharField()
-    flaver_profile = models.ArrayField(choices=FLAVOR_PROFILE_CHOICES)
+    name: models.CharField[str, str] = models.CharField(max_length=200)
+    style: models.CharField[str, str] = models.CharField(max_length=100)
+    flaver_profile: models.CharField[str, str] = models.CharField(
+        max_length=50, choices=FLAVOR_PROFILE_CHOICES
+    )
 
-    ingredients = models.ManyToManyField(Ingredient, on_delete=models.CASCADE)
-    steps = models.ManyToManyField(Step, on_delete=models.CASCADE)
-    
+    ingredients: models.ManyToManyField[Ingredient, Ingredient] = (
+        models.ManyToManyField(Ingredient)
+    )
+    steps: models.ManyToManyField[Step, Step] = models.ManyToManyField(Step)

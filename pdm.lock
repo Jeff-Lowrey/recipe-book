@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:869903a9f9e77785a5a42acfcefc04252b19d9b891dba6482549009cc7baddbb"
+content_hash = "sha256:e9144afddd87cfa33a5763ba3eb2b8026232f5fcf9e4576b37a88e8507cf7711"
 
 [[metadata.targets]]
 requires_python = ">=3.13"
@@ -68,6 +68,39 @@ dependencies = [
 files = [
     {file = "django-4.2.25-py3-none-any.whl", hash = "sha256:9584cf26b174b35620e53c2558b09d7eb180a655a3470474f513ff9acb494f8c"},
     {file = "django-4.2.25.tar.gz", hash = "sha256:2391ab3d78191caaae2c963c19fd70b99e9751008da22a0adcc667c5a4f8d311"},
+]
+
+[[package]]
+name = "django-stubs"
+version = "5.2.7"
+requires_python = ">=3.10"
+summary = "Mypy stubs for Django"
+groups = ["default"]
+dependencies = [
+    "django",
+    "django-stubs-ext>=5.2.7",
+    "tomli; python_full_version < \"3.11\"",
+    "types-pyyaml",
+    "typing-extensions>=4.11.0",
+]
+files = [
+    {file = "django_stubs-5.2.7-py3-none-any.whl", hash = "sha256:2864e74b56ead866ff1365a051f24d852f6ed02238959664f558a6c9601c95bf"},
+    {file = "django_stubs-5.2.7.tar.gz", hash = "sha256:2a07e47a8a867836a763c6bba8bf3775847b4fd9555bfa940360e32d0ee384a1"},
+]
+
+[[package]]
+name = "django-stubs-ext"
+version = "5.2.7"
+requires_python = ">=3.10"
+summary = "Monkey-patching and extensions for django-stubs"
+groups = ["default"]
+dependencies = [
+    "django",
+    "typing-extensions",
+]
+files = [
+    {file = "django_stubs_ext-5.2.7-py3-none-any.whl", hash = "sha256:0466a7132587d49c5bbe12082ac9824d117a0dedcad5d0ada75a6e0d3aca6f60"},
+    {file = "django_stubs_ext-5.2.7.tar.gz", hash = "sha256:b690655bd4cb8a44ae57abb314e0995dc90414280db8f26fff0cb9fb367d1cac"},
 ]
 
 [[package]]
@@ -311,6 +344,17 @@ groups = ["default"]
 files = [
     {file = "stevedore-5.5.0-py3-none-any.whl", hash = "sha256:18363d4d268181e8e8452e71a38cd77630f345b2ef6b4a8d5614dac5ee0d18cf"},
     {file = "stevedore-5.5.0.tar.gz", hash = "sha256:d31496a4f4df9825e1a1e4f1f74d19abb0154aff311c3b376fcc89dae8fccd73"},
+]
+
+[[package]]
+name = "types-pyyaml"
+version = "6.0.12.20250915"
+requires_python = ">=3.9"
+summary = "Typing stubs for PyYAML"
+groups = ["default"]
+files = [
+    {file = "types_pyyaml-6.0.12.20250915-py3-none-any.whl", hash = "sha256:e7d4d9e064e89a3b3cae120b4990cd370874d2bf12fa5f46c97018dd5d3c9ab6"},
+    {file = "types_pyyaml-6.0.12.20250915.tar.gz", hash = "sha256:0f8b54a528c303f0e6f7165687dd33fafa81c807fcac23f632b63aa624ced1d3"},
 ]
 
 [[package]]

@@ -3,7 +3,7 @@ from django import forms
 from .models import Recipe
 
 
-class RecipeForm(forms.ModelForm[Recipe]):
+class RecipeForm(forms.ModelForm):
     """Form for creating and editing Recipe instances."""
 
     class Meta:

@@ -1,0 +1,47 @@
+{% extends "recipes/base.html" %}
+
+{% block title %}Delete {{ recipe.name }} - Recipe Book{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="form-box">
+        <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #e74c3c;">Delete Recipe</h2>
+
+        <div class="delete-warning">
+            <p>
+                <strong>Are you sure you want to delete "{{ recipe.name }}"?</strong>
+            </p>
+            <p class="warning-text">This action cannot be undone.</p>
+        </div>
+
+        <div class="delete-details">
+            <h3>Recipe Details:</h3>
+            <dl>
+                <dt>Name:</dt>
+                <dd>{{ recipe.name }}</dd>
+
+                {% if recipe.description %}
+                <dt>Description:</dt>
+                <dd>{{ recipe.description|truncatewords:15 }}</dd>
+                {% endif %}
+
+                {% if recipe.servings %}
+                <dt>Servings:</dt>
+                <dd>{{ recipe.servings }}</dd>
+                {% endif %}
+
+                <dt>Created:</dt>
+                <dd>{{ recipe.created_at|date:"F d, Y" }}</dd>
+            </dl>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-danger">Yes, Delete Recipe</button>
+                <a href="{% url 'recipe-detail' recipe.pk %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

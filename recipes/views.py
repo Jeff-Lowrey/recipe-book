@@ -1,5 +1,3 @@
-from typing import Any
-
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -14,7 +12,7 @@ from .forms import RecipeForm
 from .models import Recipe
 
 
-class RecipeListView(ListView[Recipe]):
+class RecipeListView(ListView):
     """Display a list of all recipes."""
 
     model = Recipe
@@ -24,7 +22,7 @@ class RecipeListView(ListView[Recipe]):
     ordering = ["name"]
 
 
-class RecipeDetailView(DetailView[Recipe]):
+class RecipeDetailView(DetailView):
     """Display details of a single recipe."""
 
     model = Recipe
@@ -32,7 +30,7 @@ class RecipeDetailView(DetailView[Recipe]):
     context_object_name = "recipe"
 
 
-class RecipeCreateView(CreateView[Recipe, RecipeForm]):
+class RecipeCreateView(CreateView):
     """Create a new recipe."""
 
     model = Recipe
@@ -46,7 +44,7 @@ class RecipeCreateView(CreateView[Recipe, RecipeForm]):
         return response
 
 
-class RecipeUpdateView(UpdateView[Recipe, RecipeForm]):
+class RecipeUpdateView(UpdateView):
     """Update an existing recipe."""
 
     model = Recipe
@@ -60,7 +58,7 @@ class RecipeUpdateView(UpdateView[Recipe, RecipeForm]):
         return response
 
 
-class RecipeDeleteView(DeleteView[Recipe, Any]):
+class RecipeDeleteView(DeleteView):
     """Delete a recipe."""
 
     model = Recipe

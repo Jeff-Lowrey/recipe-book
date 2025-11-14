@@ -1,0 +1,80 @@
+{% extends "recipes/base.html" %}
+
+{% block title %}{{ recipe.name }} - Recipe Book{% endblock %}
+
+{% block content %}
+<div class="recipe-detail">
+    <div class="recipe-header">
+        <h2>{{ recipe.name }}</h2>
+        {% if recipe.description %}
+        <p>{{ recipe.description }}</p>
+        {% endif %}
+    </div>
+
+    <div class="recipe-info">
+        {% if recipe.prep_time %}
+        <div>
+            <strong>Prep Time:</strong>
+            <span>{{ recipe.prep_time }} minutes</span>
+        </div>
+        {% endif %}
+
+        {% if recipe.cook_time %}
+        <div>
+            <strong>Cook Time:</strong>
+            <span>{{ recipe.cook_time }} minutes</span>
+        </div>
+        {% endif %}
+
+        {% if recipe.prep_time and recipe.cook_time %}
+        <div>
+            <strong>Total Time:</strong>
+            <span>{{ recipe.prep_time|add:recipe.cook_time }} minutes</span>
+        </div>
+        {% endif %}
+
+        {% if recipe.servings %}
+        <div>
+            <strong>Servings:</strong>
+            <span>{{ recipe.servings }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if recipe.ingredients %}
+    <div class="recipe-section">
+        <h3>Ingredients</h3>
+        <div class="recipe-content">{{ recipe.ingredients }}</div>
+    </div>
+    {% endif %}
+
+    {% if recipe.instructions %}
+    <div class="recipe-section">
+        <h3>Instructions</h3>
+        <div class="recipe-content">{{ recipe.instructions }}</div>
+    </div>
+    {% endif %}
+
+    {% if recipe.notes %}
+    <div class="recipe-section">
+        <h3>Notes</h3>
+        <div class="recipe-notes">{{ recipe.notes }}</div>
+    </div>
+    {% endif %}
+
+    <div class="recipe-footer">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="{% url 'recipe-list' %}" class="btn btn-secondary">Back to List</a>
+            <a href="{% url 'recipe-update' recipe.pk %}" class="btn">Edit Recipe</a>
+            <a href="{% url 'recipe-delete' recipe.pk %}" class="btn btn-danger">Delete Recipe</a>
+        </div>
+
+        <div class="recipe-timestamps">
+            <p>Created: {{ recipe.created_at|date:"F d, Y g:i A" }}</p>
+            {% if recipe.updated_at %}
+            <p>Last updated: {{ recipe.updated_at|date:"F d, Y g:i A" }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

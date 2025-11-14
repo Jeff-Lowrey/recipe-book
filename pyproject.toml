@@ -78,6 +78,7 @@ confidence_level = "medium"
 
 [tool.mypy]
 python_version = "3.13"
+plugins = ["mypy_django_plugin.main"]
 # Industry-standard strict type checking (enabled for production code)
 strict = true
 warn_return_any = true
@@ -98,6 +99,9 @@ disallow_untyped_calls = true
 no_implicit_reexport = true
 strict_equality = true
 strict_concatenate = true
+
+[tool.django-stubs]
+django_settings_module = "recipe_book.settings"
 
 [[tool.mypy.overrides]]
 module = "solutions.*"

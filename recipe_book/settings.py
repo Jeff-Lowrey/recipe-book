@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "tailwind",
+    "theme",
     "recipes.apps.RecipesConfig",
 ]
 
@@ -58,6 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "recipe_book.wsgi.application"
 
+TAILWIND_APP_NAME = "theme"
 
 # Database
 # https://docs.djangoproject.com/en/stable/ref/settings/#databases

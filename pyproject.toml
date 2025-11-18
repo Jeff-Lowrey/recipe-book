@@ -12,6 +12,7 @@ dependencies = [
     "bandit>=1.8.6",
     "pytest>=8.4.2",
     "django-stubs>=5.2.7",
+    "django-tailwind[cookiecutter,honcho,reload]>=4.4.1",
 ]
 
 [build-system]
